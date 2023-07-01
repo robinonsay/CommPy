@@ -5,15 +5,10 @@ from commpy import optical
 from commpy import modulation
 from commpy import noise
 
-'''
-The Laser: https://www.quarton.com/uploadfiles/1028/product/IR-laser-modules/VLM-850-03-series/IR-Dot-Laser-Module-VLM-850-03-Manual.pdf
-The Receiver: https://www.ttelectronics.com/TTElectronics/media/ProductFiles/Datasheet/OPL800.pdf
-'''
-
 DISTANCE = 340E3  # 340km to the ISS
-TX_PWR = commpy.dec_to_db(3E-3)  # 1.5 mW Laser
-WAVELENGTH = 850E-9  # 850 nm laser
-RX_MIN_IRRADIANCE_DB= commpy.dec_to_db(2E-6 * 10E3)  # 2 uW/cm^2 min irradiance of the receiver (in W/m^2)
+TX_PWR = commpy.lin_to_db(1.5E-3)  # 1.5 mW Laser
+WAVELENGTH = 1550E-9  # 1550 nm laser
+RX_MIN_IRRADIANCE_DB= commpy.lin_to_db(2E-6 * 10E3)  # 2 uW/cm^2 min irradiance of the receiver (in W/m^2)
 BEAM_DIVERGENCE = 1.2E-3 * 2  # 1.2 mRad
 ATMOSPHERE_ATTENUATION_DB = 10*np.log10(0.6)  # MODTRAN derived value 80.1% at 850nm through atmosphere
 

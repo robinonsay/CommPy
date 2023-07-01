@@ -5,12 +5,26 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "$PYTHONPATH:${workspaceFolder}" 
+            },
+            "cwd": "${workspaceFolder}"
+        },
+        {
             "name": "Python: Run CommPy CLI",
             "type": "python",
             "request": "launch",
             "module": "commpy",
             "justMyCode": true,
-            "args": ["--cli"]
+            "args": [
+                "--cli"
+            ]
         },
         {
             "name": "Python: Run CommPy",

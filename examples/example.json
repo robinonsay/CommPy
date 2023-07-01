@@ -1,0 +1,27 @@
+{
+    "system": "optical",
+    "config":
+    {
+        "bandwidth": 850E6,
+        "wavelength": 850E-9,
+        "transmitter":
+        {
+            "laser":
+            {
+                "power": 3E-3,
+                "beam_divergence": 1.2E-3
+            }
+        },
+        "receiver":
+        {
+            "photodiode":
+            {
+                "active_area": 7.02E-6,
+                "nep": 41E-15
+            },
+            "aperture": 34E-3,
+            "spot": 3.2E-6,
+            "error": 0.9
+        }
+    }
+}
