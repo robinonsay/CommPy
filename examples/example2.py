@@ -8,6 +8,8 @@ from commpy import noise
 DISTANCE = 340E3  # 340km to the ISS
 WAVELENGTH = 850E-9
 BANDWIDTH = 850E6
+VISIBILITY = 16E3
+ATMOSPHERE_THICKNESS = 11E3
 LASER = optical.Laser(wavelength=WAVELENGTH,
                       power=3E-3,
                       beam_divergence=1.2E-3)
@@ -20,8 +22,8 @@ RECEIVER = optical.Receiver(photodiode=PHOTODIODE,
                             aperture=34E-3,
                             spot=3.2E-6,
                             error=0.9)
-ATMOSPHERE_ATTENUATION_BIAS_DB = 40
-ATMOSPHERE_ATTENUATION_DB = -commpy.lin_to_db(0.801) + ATMOSPHERE_ATTENUATION_BIAS_DB  # MODTRAN derived value 80.1% at 850nm through atmosphere
+ATMOSPHERE_ATTENUATION_SCATTERING_DB = commpy.lin_to_db(optical.kruse_model(WAVELENGTH, VISIBILITY) * ATMOSPHERE_THICKNESS)
+ATMOSPHERE_ATTENUATION_DB = -commpy.lin_to_db(0.801) + ATMOSPHERE_ATTENUATION_SCATTERING_DB  # MODTRAN derived value 80.1% at 850nm through atmosphere
 print(f"Min Irradiance (dB): {RECEIVER.min_irradiance_db}")
 print(f"Min SNR (dB): {commpy.lin_to_db(RECEIVER.min_snr)}")
 print(f"Atmospheric Attenuation (dB): {ATMOSPHERE_ATTENUATION_DB}")

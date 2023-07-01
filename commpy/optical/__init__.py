@@ -70,3 +70,14 @@ def calc_range(pwr, divergence, min_irradiance_db, start, threshold=1):
             delta /= 2
             r -= delta
     return r
+
+def kruse_model(wavelength, visibility) -> float:
+    visibility = visibility * 1E-3
+    wavelength = wavelength * 1E6
+    if visibility > 50:
+        q = 1.6
+    elif visibility >= 6:
+        q = 1.3
+    else:
+        q = 0.585 * visibility ** (1/3)
+    return 17 / visibility * (0.55 / wavelength) ** q
